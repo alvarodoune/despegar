@@ -1,3 +1,20 @@
-<h1>
+<h1 routerLink="home" style="cursor: pointer">
   {{title}}
 </h1>
+<nav>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="home" routerLinkActive="menu-active">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="delivery" routerLinkActive="menu-active">Create</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="delete" routerLinkActive="menu-active">Delete</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="detail" routerLinkActive="menu-active">List</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

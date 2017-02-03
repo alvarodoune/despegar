@@ -1,0 +1,348 @@
+<div class="container">
+  <div>
+    <div class="btn-group" role="group" aria-label="Paginacion" *ngIf="paramId">
+      <button (click)="previews()" type="button" class="btn btn-secondary">Anterior</button>
+      <button (click)="next()" type="button" class="btn btn-secondary">Siguiente</button>
+    </div>
+    <form (ngSubmit)="onSubmit()" #deliveryForm="ngForm" autocomplete="off" novalidate *ngIf="!!delivery">
+      <fieldset class="form-group">
+        <legend>Datos administrativos</legend>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="delivery.name"
+            id="name"
+            required
+            name="name"
+            #name="ngModel"
+            maxlength="50">
+          <div [hidden]="name.valid || name.pristine"
+               class="alert alert-danger">
+            Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripcion</label>
+          <textarea
+            class="form-control"
+            required
+            id="descripcion"
+            [(ngModel)]="delivery.descripcion"
+            name="descripcion"
+            #descripcion="ngModel"
+            maxlength="1000"></textarea>
+          <div [hidden]="descripcion.valid || descripcion.pristine"
+               class="alert alert-danger">
+            Description is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="especialidades">Especialidades</label>
+          <textarea
+            class="form-control"
+            id="especialidades"
+            [(ngModel)]="delivery.especialidades"
+            name="especialidades"
+            #especialidades="ngModel"
+            maxlength="500"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="direccion">Direccion</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="delivery.direccion"
+            id="direccion"
+            required
+            name="direccion"
+            #direccion="ngModel"
+            maxlength="200">
+          <div [hidden]="direccion.valid || direccion.pristine"
+               class="alert alert-danger">
+            Direccion is required
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <label for="horarioDesde">Horario de atención</label>
+          </div>
+          <div class="col">
+            <select id="horarioDesde"
+                    [(ngModel)]="delivery.horarioDesde"
+                    name="horarioDesde"
+                    required
+                    class="form-control">
+              <option value="0">00</option>
+              <option selected value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+            </select>
+          </div>
+          <label>a</label>
+          <div class="col">
+            <select id="horarioHasta"
+                    [(ngModel)]="delivery.horarioHasta"
+                    name="horarioHasta"
+                    required
+                    class="form-control">
+              <option value="0">00</option>
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+            </select>
+          </div>
+        </div>
+
+        <!--pattern='[\+]\d{3}[\(]\d{2}[\)]\d{4}[\-]\d{4}'-->
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            title='Solo se aceptan números'
+            placeholder="Introducir solo numeros"
+            required
+            class="form-control"
+            id="telefono"
+            [(ngModel)]="delivery.telefono"
+            name="telefono"
+            #telefono="ngModel"
+            maxlength="500">
+          <div [hidden]="telefono.valid || telefono.pristine"
+               class="alert alert-danger">
+            Teléfono is required
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- *********************************************** -->
+      <div class="row">
+        <div class="col">
+          <fieldset class="form-group">
+            <legend>Contacto administrativo</legend>
+            <div class="form-group">
+              <label for="caNombre">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="delivery.caNombre"
+                id="caNombre"
+                required
+                name="caNombre"
+                #caNombre="ngModel"
+                maxlength="50">
+              <div [hidden]="caNombre.valid || caNombre.pristine"
+                   class="alert alert-danger">
+                Nombre is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="caApellido">Apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="delivery.caApellido"
+                id="caApellido"
+                required
+                name="caApellido"
+                #caApellido="ngModel"
+                maxlength="200">
+              <div [hidden]="caApellido.valid || caApellido.pristine"
+                   class="alert alert-danger">
+                Apellido is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="caTelefono">Teléfono</label>
+              <input
+                type="tel"
+                pattern="[0-9]*"
+                title='Solo se aceptan números'
+                placeholder="Introducir solo numeros"
+                class="form-control"
+                [(ngModel)]="delivery.caTelefono"
+                id="caTelefono"
+                required
+                name="caTelefono"
+                #caTelefono="ngModel"
+                maxlength="200">
+              <div [hidden]="caTelefono.valid || caTelefono.pristine"
+                   class="alert alert-danger">
+                Teléfono is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="caTelefono">Email</label>
+              <input
+                type="email"
+                placeholder="example@example.com"
+                class="form-control"
+                [(ngModel)]="delivery.caEmail"
+                id="caEmail"
+                required
+                name="caEmail"
+                #caEmail="ngModel"
+                maxlength="200">
+              <div [hidden]="caEmail.valid || caEmail.pristine"
+                   class="alert alert-danger">
+                Email is required
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- *********************************************** -->
+        <div class="col">
+          <fieldset class="form-group">
+            <legend>Contacto comercial</legend>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" (change)="clearCC($event)" name="idemCa" id="idemCa"
+                       [(ngModel)]="delivery.idemCa"> Idem contacto administrativo
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="caNombre">Nombre</label>
+              <input
+                type="text"
+                [disabled]="!delivery.idemCa"
+                class="form-control"
+                [(ngModel)]="delivery.ccNombre"
+                id="ccNombre"
+                required
+                name="ccNombre"
+                #ccNombre="ngModel"
+                maxlength="50">
+              <div [hidden]="ccNombre.valid || ccNombre.pristine"
+                   class="alert alert-danger">
+                Nombre is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="caApellido">Apellido</label>
+              <input
+                type="text"
+                [disabled]="!delivery.idemCa"
+                class="form-control"
+                [(ngModel)]="delivery.ccApellido"
+                id="ccApellido"
+                [required]="delivery.idemCa"
+                name="ccApellido"
+                #ccApellido="ngModel"
+                maxlength="200">
+              <div [hidden]="ccApellido.valid || ccApellido.pristine"
+                   class="alert alert-danger">
+                Apellido is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="caTelefono">Teléfono</label>
+              <input
+                type="tel"
+                [disabled]="!delivery.idemCa"
+                pattern="[0-9]*"
+                title='Solo se aceptan números'
+                placeholder="Introducir solo numeros"
+                class="form-control"
+                [(ngModel)]="delivery.ccTelefono"
+                id="ccTelefono"
+                [required]="delivery.idemCa"
+                name="ccTelefono"
+                #ccTelefono="ngModel"
+                maxlength="200">
+              <div [hidden]="ccTelefono.valid || ccTelefono.pristine"
+                   class="alert alert-danger">
+                Teléfono is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="caTelefono">Email</label>
+              <input
+                type="email"
+                [disabled]="!delivery.idemCa"
+                placeholder="example@example.com"
+                class="form-control"
+                [(ngModel)]="delivery.ccEmail"
+                id="ccEmail"
+                required
+                name="ccEmail"
+                #ccEmail="ngModel"
+                maxlength="200">
+              <div [hidden]="ccEmail.valid || ccEmail.pristine"
+                   class="alert alert-danger">
+                Email is required
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+      </div>
+
+      <div style="display: block; padding: 10px 0 0 0" *ngIf="!paramId">
+        <button type="submit" class="btn btn-success" [disabled]="!deliveryForm.form.valid">Submit</button>
+        <button type="button" class="btn btn-default" [disabled]="paramId" (click)="clear();">Clear</button>
+      </div>
+
+      <div class="alert alert-info" role="alert" *ngIf="paramId">
+        <strong>Los cambios se guardan automaticamente</strong> Para crear un delivery nuevo haga click <a
+        routerLink="/delivery">aquí</a>
+      </div>
+    </form>
+    <div class="alert alert-warning" role="alert" *ngIf="!delivery">
+      <strong>No se ha encontrado el delivery</strong> Para crear un delivery nuevo haga click <a
+      routerLink="/delivery">aquí</a>
+    </div>
+    <hr>
+  </div>
+</div>
